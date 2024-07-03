@@ -9,5 +9,8 @@
     <Grid>
         <TextBlock Text="Hi"/>
         <TextBox Text="hello"></TextBox>
+        <TextBox Text="Ahmed"></TextBox>
+        
+        
     </Grid>
 </Window>
