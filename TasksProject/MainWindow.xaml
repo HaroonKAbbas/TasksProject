@@ -10,6 +10,7 @@
         <TextBlock Text="Hi"/>
         <TextBox Text="hello"></TextBox>
         <TextBlock Text="Hi E_Harone"/>
+        <TextBlock Text="Hi 222E_Harone"/>
 
     </Grid>
 </Window>
