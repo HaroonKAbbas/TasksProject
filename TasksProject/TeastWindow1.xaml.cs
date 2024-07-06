@@ -105,6 +105,18 @@ namespace TasksProject
             using (var db = new UserDataContext())
             {
                 System.Windows.MessageBox.Show(Users.Count.ToString());
+                var allData = dataGraid.ItemsSource.Cast<UserHelper>().ToList();
+                foreach (var item in dataGraid.ItemsSource)
+                {
+                    string fullname = (item as UserHelper)?.Fulname;
+                    string Phone = (item as UserHelper)?.Phone;
+                    string PriceRate = (item as UserHelper)?.PriceRate.ToString();
+                    string Price = (item as UserHelper)?.Price.ToString();
+                    string Email = (item as UserHelper)?.Email; 
+                    // قم بتنفيذ الإجراء المطلوب على كل صف هنا
+                    // يمكنك الوصول إلى بيانات الصف الحالي عن طريق استخدام item
+                }
+
                 foreach (var item in Users)
                 {
                     int selectedUserId = (int)item.Userid;
@@ -235,7 +247,8 @@ namespace TasksProject
         private void dataGraid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedItem = dataGraid.SelectedItem as UserHelper;
-            if (selectedItem != null && selectedItem.Fulname.ToString() != null)
+            if (selectedItem != null )
+            if (selectedItem != null && selectedItem.Fulname != null)
             {
                 txtNambook.Text = selectedItem.Fulname.ToString();
                 txtAuthan.Text = selectedItem.Authan.ToString();
