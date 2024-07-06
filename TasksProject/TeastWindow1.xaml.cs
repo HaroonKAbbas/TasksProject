@@ -112,7 +112,7 @@ namespace TasksProject
                     string Phone = (item as UserHelper)?.Phone;
                     string PriceRate = (item as UserHelper)?.PriceRate.ToString();
                     string Price = (item as UserHelper)?.Price.ToString();
-                    string Email = (item as UserHelper)?.Email; 
+                    string Email = (item as UserHelper)?.Email;
                     // قم بتنفيذ الإجراء المطلوب على كل صف هنا
                     // يمكنك الوصول إلى بيانات الصف الحالي عن طريق استخدام item
                 }
@@ -215,15 +215,8 @@ namespace TasksProject
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnnextwin_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
+ 
 
         private void btnedd_Click(object sender, RoutedEventArgs e)
         {
@@ -247,25 +240,35 @@ namespace TasksProject
         private void dataGraid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var selectedItem = dataGraid.SelectedItem as UserHelper;
-            if (selectedItem != null )
-            if (selectedItem != null && selectedItem.Fulname != null)
+            if (selectedItem != null)
             {
-                txtNambook.Text = selectedItem.Fulname.ToString();
-                txtAuthan.Text = selectedItem.Authan.ToString();
-                txtEmail.Text = selectedItem.Email.ToString();
-                txtPhone.Text = selectedItem.Phone.ToString();
-                txtPrice.Text = selectedItem.Price.ToString();
-                txtPriceRate.Text = selectedItem.Price.ToString();
-                txtselectUserid.Text = selectedItem.Userid.ToString();
-                //txtselectUserid.Text = dataGraid.ComboBoxAddUser.SelectedValue.ToString();
-                if (selectedItem.Userid != null)
+                UserDataContext dt = new UserDataContext();
+                var dtu=dt.AddUsers.FirstOrDefault(x=>x.Id==selectedItem.Userid);
+                if (dtu != null)
                 {
-                    SelectedId = int.Parse(selectedItem.Userid.ToString());
-                    txtselectUserid.Text = selectedItem.Userid.ToString();  // Assuming Userid is the property you want to display
-                    cobUserid.SelectedValue = selectedItem.Userid.ToString();
+                    txtName.Text = dtu.Name;
+                    txtuserName.Text = dtu.Username;
+                    txtpass.Text=dtu.Pasword;
                 }
-            }
+                if (selectedItem != null && selectedItem.Fulname != null)
+                {
+                    txtNambook.Text = selectedItem.Fulname.ToString();
+                    txtAuthan.Text = selectedItem.Authan.ToString();
+                    txtEmail.Text = selectedItem.Email.ToString();
+                    txtPhone.Text = selectedItem.Phone.ToString();
+                    txtPrice.Text = selectedItem.Price.ToString();
+                    txtPriceRate.Text = selectedItem.Price.ToString();
+                    txtselectUserid.Text = selectedItem.Userid.ToString();
+                    //txtselectUserid.Text = dataGraid.ComboBoxAddUser.SelectedValue.ToString();
+                    if (selectedItem.Userid != null)
+                    {
+                        SelectedId = int.Parse(selectedItem.Userid.ToString());
+                        txtselectUserid.Text = selectedItem.Userid.ToString();  // Assuming Userid is the property you want to display
+                        cobUserid.SelectedValue = selectedItem.Userid.ToString();
+                    }
+                }
 
+            }
         }
     }
 }
